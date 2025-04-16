@@ -19,7 +19,8 @@ yarn set version stable
 
 # Install dependencies (allow lockfile updates, ignore engine mismatch)
 echo "📦 Installing dependencies..."
-yarn install --mode=update-lockfile --ignore-engines
+
+yarn add -D ts-node
 
 # Check if install succeeded
 if [ $? -ne 0 ]; then
