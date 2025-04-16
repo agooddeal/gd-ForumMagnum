@@ -19,5 +19,6 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - run: |
-           yarn install --immutable false
+           yarn install --check-cache --immutable-cache
+
  
