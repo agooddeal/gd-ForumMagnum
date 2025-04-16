@@ -5,21 +5,27 @@ PROJECT_DIR="/home/github/cicd/_work/gd-ForumMagnum/gd-ForumMagnum"
 
 # Move to the project directory
 cd "$PROJECT_DIR" || {
-  echo "❌ Directory not found: $PROJECT_DIR"
+  echo "❌ Project directory not found: $PROJECT_DIR"
   exit 1
 }
 
-echo "📦 Installing dependencies with Yarn (v4+) and skipping lockfile restrictions..."
+# Set Postgres URL for local development
+export POSTGRES_URL="postgres://postgres:password@localhost:5432/forummagnum"
+echo "📡 Using POSTGRES_URL=$POSTGRES_URL"
 
-# Run yarn install normally (no --immutable, no lockfile check)
+# Enable Corepack & set stable Yarn version
 corepack enable
 yarn set version stable
-yarn install --mode=update-lockfile
 
-# Check if it was successful
-if [ $? -eq 0 ]; then
-  echo "✅ Yarn install completed successfully."
-else
-  echo "❌ Yarn install failed."
+# Install dependencies (allow lockfile updates, ignore engine mismatch)
+echo "📦 Installing dependencies..."
+yarn install --mode=update-lockfile --ignore-engines
+
+# Check if install succeeded
+if [ $? -ne 0 ]; then
+  echo "❌ Yarn install failed. Check logs above."
   exit 1
 fi
+
+# Start local DB server
+echo "🚀 Starting local ForumMagnum server..."
