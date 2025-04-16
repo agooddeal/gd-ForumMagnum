@@ -9,7 +9,7 @@ cd /home/github/cicd/_work/gd-ForumMagnum/gd-ForumMagnum || {
 echo "📦 Running yarn install with --ignore-engines..."
 
 # Run yarn install ignoring engine restrictions
-yarn install --ignore-engines
+yarn install 
 
 # Check if it was successful
 if [ $? -eq 0 ]; then
