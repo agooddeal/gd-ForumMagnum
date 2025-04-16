@@ -21,6 +21,10 @@ yarn set version stable
 echo "📦 Installing dependencies..."
 
 yarn add -D ts-node
+yarn add ws
+yarn add body-parser
+yarn add lodash
+yarn add node-fetch
 
 # Check if install succeeded
 if [ $? -ne 0 ]; then
