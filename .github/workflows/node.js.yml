@@ -18,7 +18,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18' # Or the version your project requires
+          node-version: '22' # Or the version your project requires
 
       - name: Install dependencies with Yarn
         run: yarn install
