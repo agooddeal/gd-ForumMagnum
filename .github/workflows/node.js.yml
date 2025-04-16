@@ -1,5 +1,4 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+# .github/workflows/nodejs.yml
 
 name: Node.js CI
 
@@ -11,14 +10,15 @@ on:
 
 jobs:
   build:
-
     runs-on: self-hosted
 
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v4
-    - run: |
-           yarn install --check-cache --immutable-cache
+      - uses: actions/checkout@v4
 
- 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # Or the version your project requires
+
+      - name: Install dependencies with Yarn
+        run: yarn install
